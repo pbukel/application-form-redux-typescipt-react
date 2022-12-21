@@ -5,6 +5,7 @@ import FirstForm from "./components/FirstForm";
 import SecondForm from "./components/SecondForm";
 import { useAppSelector, useAppDispatch } from "./app/hooks";
 import { setIndex } from "./features/states";
+import { useState } from "react";
 
 const Container = styled.div`
   background-color: #f5f5f5;
@@ -150,7 +151,7 @@ function App() {
                   <CheckCircleOutlineRoundedIcon color="primary" />
                 </CheckBox>
               </Step>
-              <Step onClick={():void => moveFormFromStepper(0)}>
+              <Step onClick={(): void => moveFormFromStepper(0)}>
                 <Line></Line>
                 <StepName>Company</StepName>
                 <CheckBox>
@@ -192,14 +193,6 @@ function App() {
           <Wrapper index={index}>
             <FirstForm></FirstForm>
             <SecondForm></SecondForm>
-
-            {/* <FormContainer2>
-              <Form style={{ backgroundColor: "blue", height: "650px" }}></Form>
-            </FormContainer2> */}
-            {/* <Form style={{ backgroundColor: "red" }}></Form> */}
-            {/* <Form style={{ backgroundColor: "blue" }}></Form> */}
-            {/* <Form style={{ backgroundColor: "white" }}></Form> */}
-            {/* <Form></Form> */}
           </Wrapper>
         </FormContainer>
       </MainContainer>

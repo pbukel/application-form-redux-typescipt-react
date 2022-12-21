@@ -1,21 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { useAppDispatch } from "../app/hooks";
 import { setFromButtons } from "../features/states";
 
 const Container = styled.div`
   height: 100vh;
-  /* border: 2px solid blue; */
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
 `;
 
 const Form = styled.div`
-  /* margin: auto 0; */
   margin-top: 20px;
   margin-left: 10px;
-  /* margin-bottom: auto; */
   max-width: 724px;
   height: 567px;
   background-color: white;
@@ -37,17 +33,25 @@ const AllInputs = styled.div`
   flex-direction: column;
   width: 75%;
 `;
-const Input = styled.input`
+
+const InputContainer = styled.div`
   width: 100%;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+`;
+const Input = styled.input`
+  width: 100%;
   padding: 15px;
+  box-sizing: border-box;
   border: 1px solid #cccccc;
   border-radius: 8px;
 `;
 const Select = styled.select`
-  width: 106%;
+  width: 100%;
   margin-bottom: 20px;
   padding: 15px;
+  box-sizing: border-box;
   border: 1px solid #cccccc;
   border-radius: 8px;
 `;
@@ -75,28 +79,71 @@ const Button = styled.button<buttonProps>`
     ${(props) => (props.direction === "back" ? "#3E71F4" : "white")};
   cursor: pointer;
 `;
+const ErrorMessage = styled.div`
+  color: #ff0000c3;
+  font-size: 12px;
+  width: 100%;
+  margin-left: 10px;
+`;
 
 function FirstForm() {
   const dispatch = useAppDispatch();
   function moveFormBackNext(direction: string): void {
-    dispatch(setFromButtons(direction))
+    dispatch(setFromButtons(direction));
+  }
+  function handleInput(
+    event: React.ChangeEvent<HTMLInputElement>,
+    value?: string
+  ) {
+    // const entered = event.target.value;
+    console.log(value, event.target.value);
   }
   return (
     <Container>
       <Form style={{ backgroundColor: "white" }}>
         <Name>Company</Name>
         <AllInputs>
-          <Input placeholder="Company Code"></Input>
-          <Input placeholder="Company Name"></Input>
-          <Select placeholder="Country of registration">
-            {/* <option value="">Country of registration</option> */}
-            <option value="Lithuania">Lithuania</option>
-            <option value="Germany">Germany</option>
-            <option value="Great Britain">Great Britain</option>
-          </Select>
+          <InputContainer>
+            <Input
+              placeholder="Company Code"
+              onChange={(e) => handleInput(e, "companyCode")}
+            ></Input>
+            <ErrorMessage>
+              Wrong input. It must contain at least 6 digits
+            </ErrorMessage>
+          </InputContainer>
+
+          <InputContainer>
+            <Input
+              placeholder="Company Name"
+              onChange={(e) => handleInput(e, "companyName")}
+            ></Input>
+            <ErrorMessage>
+              Wrong input. It must contain at least 3 characters
+            </ErrorMessage>
+          </InputContainer>
+
+          <InputContainer>
+            <Select placeholder="Country of registration">
+              <option value="Lithuania">Lithuania</option>
+              <option value="Germany">Germany</option>
+              <option value="Great Britain">Great Britain</option>
+            </Select>
+          </InputContainer>
+
           <Buttons>
-            <Button direction="back" onClick={():void => moveFormBackNext("back")}>Back</Button>
-            <Button direction="next" onClick={():void => moveFormBackNext("next")}>Next</Button>
+            <Button
+              direction="back"
+              // onClick={(): void => moveFormBackNext("back")}
+            >
+              Back
+            </Button>
+            <Button
+              direction="next"
+              onClick={(): void => moveFormBackNext("next")}
+            >
+              Next
+            </Button>
           </Buttons>
         </AllInputs>
       </Form>
