@@ -2,11 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import LeagalData from "./LeagalData";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { setFromButtons, setShowLegal } from "../features/states";
+import {
+  setFromButtons,
+  setShowLegal,
+  setValues,
+  setError2,
+  removeError2,
+} from "../features/states";
 
 const Container = styled.div`
-  height: 100vh;
-  /* border: 2px solid blue; */
+  height: 90vh;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -19,7 +24,7 @@ const Form = styled.div`
   margin-left: 10px;
   margin-bottom: 20px;
   max-width: 724px;
-  height: 750px;
+  height: 100%;
   background-color: white;
   border-radius: 20px;
   box-shadow: 1px 2px 5px #aaaaaa;
@@ -102,7 +107,7 @@ const Button = styled.button<buttonProps>`
 `;
 
 const CheckboxContainer = styled.div`
-  width: 106%;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -130,12 +135,40 @@ const ErrorMessage = styled.div`
 
 function SecondForm() {
   const show = useAppSelector((state) => state.states.value);
+  const data = useAppSelector((state) => state.states.values);
   const dispatch = useAppDispatch();
+  const errors = useAppSelector((state) => state.states.secondFormErrors);
+  console.log(errors);
+
   function moveFormBackNext(direction: string): void {
+    const expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    if (data.name.length < 3) {
+      dispatch(setError2("name"));
+    } else {
+      dispatch(removeError2("name"));
+    }
+    if (data.surname.length < 3) {
+      dispatch(setError2("surname"));
+    } else {
+      dispatch(removeError2("surname"));
+    }
+    if (data.email.length === 0 || expression.test(data.email) === false) {
+      dispatch(setError2("email"));
+    } else {
+      dispatch(removeError2("email"));
+    }
+    // if (direction === "back") dispatch(setFromButtons(direction));
     dispatch(setFromButtons(direction));
   }
   function showLegal(show: boolean): void {
     dispatch(setShowLegal(show));
+  }
+  function handleInput(
+    event: React.ChangeEvent<HTMLInputElement>,
+    value?: string
+  ) {
+    console.log(value, event.target.value);
+    dispatch(setValues({ name: value, value: event.target.value }));
   }
 
   return (
@@ -144,44 +177,67 @@ function SecondForm() {
         <Name>Contact Person</Name>
         <AllInputs>
           <InputContainer>
-            <Input placeholder="Name"></Input>
-            <ErrorMessage>
-              Wrong input. It must contain at least 6 digits
-            </ErrorMessage>
+            <Input
+              placeholder="Name"
+              onChange={(e) => handleInput(e, "name")}
+            ></Input>
+            {errors.includes("name") === true ? (
+              <ErrorMessage>
+                Wrong input. It must contain at least 6 digits
+              </ErrorMessage>
+            ) : (
+              ""
+            )}
           </InputContainer>
           <InputContainer>
-            <Input placeholder="Surname"></Input>
-            <ErrorMessage>
-              Wrong input. It must contain at least 6 digits
-            </ErrorMessage>
+            <Input
+              placeholder="Surname"
+              onChange={(e) => handleInput(e, "surname")}
+            ></Input>
+            {errors.includes("surname") === true ? (
+              <ErrorMessage>
+                Wrong input. It must contain at least 6 digits
+              </ErrorMessage>
+            ) : (
+              ""
+            )}
           </InputContainer>
           <InputContainer>
-            <Input placeholder="Job title"></Input>
-            <ErrorMessage>
-              Wrong input. It must contain at least 6 digits
-            </ErrorMessage>
+            <Input
+              placeholder="Job title"
+              onChange={(e) => handleInput(e, "jobTitle")}
+            ></Input>
+            {errors.includes("jobTitle") === true ? (
+              <ErrorMessage>
+                Wrong input. It must contain at least 6 digits
+              </ErrorMessage>
+            ) : (
+              ""
+            )}
           </InputContainer>
           <InputContainer>
-            <Input placeholder="Job title"></Input>
-            <ErrorMessage>
-              Wrong input. It must contain at least 6 digits
-            </ErrorMessage>
-          </InputContainer>
-          <InputContainer>
-            <Input placeholder="E-mail address"></Input>
-            <ErrorMessage>
-              Wrong input. It must contain at least 6 digits
-            </ErrorMessage>
+            <Input
+              placeholder="E-mail address"
+              onChange={(e) => handleInput(e, "email")}
+            ></Input>
+            {errors.includes("email") === true ? (
+              <ErrorMessage>Wrong email adress!</ErrorMessage>
+            ) : (
+              ""
+            )}
           </InputContainer>
 
           <PhoneContainer>
             <Select placeholder="Job title">
               {/* <option value="">Country of registration</option> */}
-              <option value="Lithuania">Lithuania</option>
-              <option value="Germany">Germany</option>
-              <option value="Great Britain">Great Britain</option>
+              <option value="+370">+370 Lithuania</option>
+              <option value="+42">+42 Germany</option>
+              <option value="+44">+44 Great Britain</option>
             </Select>
-            <Phone placeholder="Phone No."></Phone>
+            <Phone
+              placeholder="Phone No."
+              onChange={(e) => handleInput(e, "phone")}
+            ></Phone>
           </PhoneContainer>
           <CheckboxContainer>
             <Checkbox type="checkbox"></Checkbox>
@@ -219,7 +275,12 @@ function SecondForm() {
             >
               Back
             </Button>
-            <Button direction="next">Next</Button>
+            <Button
+              direction="next"
+              onClick={(): void => moveFormBackNext("next")}
+            >
+              Next
+            </Button>
           </Buttons>
         </AllInputs>
       </Form>

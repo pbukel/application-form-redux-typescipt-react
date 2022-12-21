@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { setFromButtons,setShowLegal } from "../features/states";
+import { setFromButtons, setShowLegal } from "../features/states";
 
 const Container = styled.div`
   position: absolute;
@@ -19,6 +19,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   z-index: 2;
+  padding-bottom: 20px;
 `;
 const Data = styled.div`
   margin-top: 80px;
@@ -64,88 +65,85 @@ const Button = styled.button<buttonProps>`
 function LeagalData() {
   const show = useAppSelector((state) => state.states.value);
   const dispatch = useAppDispatch();
-  function showLegal(show:boolean):void{
-    dispatch(setShowLegal(show))
+  function showLegal(show: boolean): void {
+    dispatch(setShowLegal(show));
   }
   return (
-   <Container>
-        <Name>Contact Person</Name>
-        <Data>
-          I hereby agree that all data submitted herein regarding the company I
-          represent along with my submitted personal data shall be used for
-          direct marketing purposes with the aim of sending business financing
-          proposals targeted and tailored to the aforementioned represented
-          company, by UAB SME Finance, UAB SME Finance Leasing and UAB SME Bank.
-          <br />
-          <br />I hereby agree that all data submitted herein regarding the
-          company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank.
-          <br />
-          <br />I hereby agree that all data submitted herein regarding the
-          company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank.
-          <br />
-          <br /> I hereby agree that all data submitted herein regarding the
-          company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank.
-          <br />
-          <br />I hereby agree that all data submitted herein regarding the
-          company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank.
-          <br />I hereby agree that all data submitted herein regarding the
-          company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank. I hereby agree that all data submitted herein regarding
-          the company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank. I hereby agree that all data submitted herein regarding
-          the company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank. I hereby agree that all data submitted herein regarding
-          the company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank. I hereby agree that all data submitted herein regarding
-          the company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank. I hereby agree that all data submitted herein regarding
-          the company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank. I hereby agree that all data submitted herein regarding
-          the company I represent along with my submitted personal data shall be
-          used for direct marketing purposes with the aim of sending business
-          financing proposals targeted and tailored to the aforementioned
-          represented company, by UAB SME Finance, UAB SME Finance Leasing and
-          UAB SME Bank.
-        </Data>
-        <Buttons>
-          <Button direction="back" onClick={():void => showLegal(false)} >Back</Button>
-        </Buttons>
-      </Container>
-  )
+    <Container>
+      <Name>Contact Person</Name>
+      <Data>
+        I hereby agree that all data submitted herein regarding the company I
+        represent along with my submitted personal data shall be used for direct
+        marketing purposes with the aim of sending business financing proposals
+        targeted and tailored to the aforementioned represented company, by UAB
+        SME Finance, UAB SME Finance Leasing and UAB SME Bank.
+        <br />
+        <br />I hereby agree that all data submitted herein regarding the
+        company I represent along with my submitted personal data shall be used
+        for direct marketing purposes with the aim of sending business financing
+        proposals targeted and tailored to the aforementioned represented
+        company, by UAB SME Finance, UAB SME Finance Leasing and UAB SME Bank.
+        <br />
+        <br />I hereby agree that all data submitted herein regarding the
+        company I represent along with my submitted personal data shall be used
+        for direct marketing purposes with the aim of sending business financing
+        proposals targeted and tailored to the aforementioned represented
+        company, by UAB SME Finance, UAB SME Finance Leasing and UAB SME Bank.
+        <br />
+        <br /> I hereby agree that all data submitted herein regarding the
+        company I represent along with my submitted personal data shall be used
+        for direct marketing purposes with the aim of sending business financing
+        proposals targeted and tailored to the aforementioned represented
+        company, by UAB SME Finance, UAB SME Finance Leasing and UAB SME Bank.
+        <br />
+        <br />I hereby agree that all data submitted herein regarding the
+        company I represent along with my submitted personal data shall be used
+        for direct marketing purposes with the aim of sending business financing
+        proposals targeted and tailored to the aforementioned represented
+        company, by UAB SME Finance, UAB SME Finance Leasing and UAB SME Bank.
+        <br />I hereby agree that all data submitted herein regarding the
+        company I represent along with my submitted personal data shall be used
+        for direct marketing purposes with the aim of sending business financing
+        proposals targeted and tailored to the aforementioned represented
+        company, by UAB SME Finance, UAB SME Finance Leasing and UAB SME Bank. I
+        hereby agree that all data submitted herein regarding the company I
+        represent along with my submitted personal data shall be used for direct
+        marketing purposes with the aim of sending business financing proposals
+        targeted and tailored to the aforementioned represented company, by UAB
+        SME Finance, UAB SME Finance Leasing and UAB SME Bank. I hereby agree
+        that all data submitted herein regarding the company I represent along
+        with my submitted personal data shall be used for direct marketing
+        purposes with the aim of sending business financing proposals targeted
+        and tailored to the aforementioned represented company, by UAB SME
+        Finance, UAB SME Finance Leasing and UAB SME Bank. I hereby agree that
+        all data submitted herein regarding the company I represent along with
+        my submitted personal data shall be used for direct marketing purposes
+        with the aim of sending business financing proposals targeted and
+        tailored to the aforementioned represented company, by UAB SME Finance,
+        UAB SME Finance Leasing and UAB SME Bank. I hereby agree that all data
+        submitted herein regarding the company I represent along with my
+        submitted personal data shall be used for direct marketing purposes with
+        the aim of sending business financing proposals targeted and tailored to
+        the aforementioned represented company, by UAB SME Finance, UAB SME
+        Finance Leasing and UAB SME Bank. I hereby agree that all data submitted
+        herein regarding the company I represent along with my submitted
+        personal data shall be used for direct marketing purposes with the aim
+        of sending business financing proposals targeted and tailored to the
+        aforementioned represented company, by UAB SME Finance, UAB SME Finance
+        Leasing and UAB SME Bank. I hereby agree that all data submitted herein
+        regarding the company I represent along with my submitted personal data
+        shall be used for direct marketing purposes with the aim of sending
+        business financing proposals targeted and tailored to the aforementioned
+        represented company, by UAB SME Finance, UAB SME Finance Leasing and UAB
+        SME Bank.
+      </Data>
+      <Buttons>
+        <Button direction="back" onClick={(): void => showLegal(false)}>
+          Back
+        </Button>
+      </Buttons>
+    </Container>
+  );
 }
 
-export default LeagalData
+export default LeagalData;

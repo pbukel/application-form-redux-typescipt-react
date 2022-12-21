@@ -5,7 +5,9 @@ import FirstForm from "./components/FirstForm";
 import SecondForm from "./components/SecondForm";
 import { useAppSelector, useAppDispatch } from "./app/hooks";
 import { setIndex } from "./features/states";
-import { useState } from "react";
+import Third from "./components/Third";
+import Four from "./components/Four";
+import Five from "./components/Five";
 
 const Container = styled.div`
   background-color: #f5f5f5;
@@ -193,6 +195,9 @@ function App() {
           <Wrapper index={index}>
             <FirstForm></FirstForm>
             <SecondForm></SecondForm>
+            <Third></Third>
+            <Four></Four>
+            <Five></Five>
           </Wrapper>
         </FormContainer>
       </MainContainer>

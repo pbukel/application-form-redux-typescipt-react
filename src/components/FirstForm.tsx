@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { useAppDispatch } from "../app/hooks";
-import { setFromButtons } from "../features/states";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import {
+  setError1,
+  setFromButtons,
+  setValues,
+  removeError1,
+} from "../features/states";
 
 const Container = styled.div`
   height: 100vh;
@@ -88,15 +93,29 @@ const ErrorMessage = styled.div`
 
 function FirstForm() {
   const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => state.states.values);
+
+  const errors = useAppSelector((state) => state.states.firstFormErrors);
+  console.log(errors.length === 0);
   function moveFormBackNext(direction: string): void {
+    if (data.companyCode.length < 6) {
+      dispatch(setError1("companyCode"));
+    } else {
+      dispatch(removeError1("companyCode"));
+    }
+    if (data.companyName.length < 3) {
+      dispatch(setError1("companyName"));
+    } else {
+      dispatch(removeError1("companyName"));
+    }
     dispatch(setFromButtons(direction));
   }
   function handleInput(
     event: React.ChangeEvent<HTMLInputElement>,
     value?: string
   ) {
-    // const entered = event.target.value;
     console.log(value, event.target.value);
+    dispatch(setValues({ name: value, value: event.target.value }));
   }
   return (
     <Container>
@@ -108,9 +127,13 @@ function FirstForm() {
               placeholder="Company Code"
               onChange={(e) => handleInput(e, "companyCode")}
             ></Input>
-            <ErrorMessage>
-              Wrong input. It must contain at least 6 digits
-            </ErrorMessage>
+            {errors.includes("companyCode") === true ? (
+              <ErrorMessage>
+                Wrong input. It must contain at least 6 digits
+              </ErrorMessage>
+            ) : (
+              ""
+            )}
           </InputContainer>
 
           <InputContainer>
@@ -118,9 +141,13 @@ function FirstForm() {
               placeholder="Company Name"
               onChange={(e) => handleInput(e, "companyName")}
             ></Input>
-            <ErrorMessage>
-              Wrong input. It must contain at least 3 characters
-            </ErrorMessage>
+            {errors.includes("companyName") === true ? (
+              <ErrorMessage>
+                Wrong input. It must contain at least 3 characters
+              </ErrorMessage>
+            ) : (
+              ""
+            )}
           </InputContainer>
 
           <InputContainer>
