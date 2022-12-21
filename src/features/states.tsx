@@ -3,12 +3,14 @@ import type { RootState } from '../app/store'
 
 interface MyState {
   value: boolean,
-  index:number
+  index:number,
+  user:object,
   
 }
 const initialState: MyState = {
     value: false,
     index:0,
+    user:{}
 }
 
 export const stateSlice = createSlice({

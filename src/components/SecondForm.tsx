@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import LeagalData from "./LeagalData";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { setFromButtons,setShowLegal } from "../features/states";
+import { setFromButtons, setShowLegal } from "../features/states";
 
 const Container = styled.div`
   height: 100vh;
@@ -26,6 +26,8 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
+  padding-bottom: 20px;
 `;
 
 const Name = styled.div`
@@ -40,16 +42,23 @@ const AllInputs = styled.div`
   flex-direction: column;
   width: 75%;
 `;
-const Input = styled.input`
+const InputContainer = styled.div`
   width: 100%;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+`;
+const Input = styled.input`
+  width: 100%;
   padding: 15px;
+  box-sizing: border-box;
   border: 1px solid #cccccc;
   border-radius: 8px;
 `;
 const PhoneContainer = styled.div`
   display: flex;
-  width: 106%;
+  width: 100%;
+  box-sizing: border-box;
   gap: 15px;
 `;
 const Select = styled.select`
@@ -112,15 +121,21 @@ const Span = styled.span`
   color: #2b64f5;
   cursor: pointer;
 `;
+const ErrorMessage = styled.div`
+  color: #ff0000c3;
+  font-size: 12px;
+  width: 100%;
+  margin-left: 10px;
+`;
 
 function SecondForm() {
   const show = useAppSelector((state) => state.states.value);
   const dispatch = useAppDispatch();
   function moveFormBackNext(direction: string): void {
-    dispatch(setFromButtons(direction))
+    dispatch(setFromButtons(direction));
   }
-  function showLegal(show:boolean):void{
-    dispatch(setShowLegal(show))
+  function showLegal(show: boolean): void {
+    dispatch(setShowLegal(show));
   }
 
   return (
@@ -128,10 +143,37 @@ function SecondForm() {
       <Form style={{ backgroundColor: "white" }}>
         <Name>Contact Person</Name>
         <AllInputs>
-          <Input placeholder="Name"></Input>
-          <Input placeholder="Surname"></Input>
-          <Input placeholder="Job title"></Input>
-          <Input placeholder="E-mail address"></Input>
+          <InputContainer>
+            <Input placeholder="Name"></Input>
+            <ErrorMessage>
+              Wrong input. It must contain at least 6 digits
+            </ErrorMessage>
+          </InputContainer>
+          <InputContainer>
+            <Input placeholder="Surname"></Input>
+            <ErrorMessage>
+              Wrong input. It must contain at least 6 digits
+            </ErrorMessage>
+          </InputContainer>
+          <InputContainer>
+            <Input placeholder="Job title"></Input>
+            <ErrorMessage>
+              Wrong input. It must contain at least 6 digits
+            </ErrorMessage>
+          </InputContainer>
+          <InputContainer>
+            <Input placeholder="Job title"></Input>
+            <ErrorMessage>
+              Wrong input. It must contain at least 6 digits
+            </ErrorMessage>
+          </InputContainer>
+          <InputContainer>
+            <Input placeholder="E-mail address"></Input>
+            <ErrorMessage>
+              Wrong input. It must contain at least 6 digits
+            </ErrorMessage>
+          </InputContainer>
+
           <PhoneContainer>
             <Select placeholder="Job title">
               {/* <option value="">Country of registration</option> */}
@@ -150,7 +192,9 @@ function SecondForm() {
               business financing proposals targeted and tailored to the
               aforementioned represented company, by UAB SME Finance, UAB SME
               Finance Leasing and UAB SME Bank.{" "}
-              <Span onClick={():void => showLegal(true)}>Please click to expand</Span>
+              <Span onClick={(): void => showLegal(true)}>
+                Please click to expand
+              </Span>
             </Text>
           </CheckboxContainer>
           <CheckboxContainer>
@@ -161,18 +205,25 @@ function SecondForm() {
               and other companies as provided, acting in partnership herewith:
               UAB „SME Finance Leasing“ (legal entity code 305625261, address at
               Antano Tumėno str. 4-15 (hereinafter – SME Finance Leasing)) and
-              UAB SME Bank <Span onClick={():void => showLegal(true)} >Please click to expand</Span>
+              UAB SME Bank{" "}
+              <Span onClick={(): void => showLegal(true)}>
+                Please click to expand
+              </Span>
             </Text>
           </CheckboxContainer>
 
           <Buttons>
-            <Button direction="back" onClick={():void => moveFormBackNext("back")}>Back</Button>
-            <Button direction="next" >Next</Button>
+            <Button
+              direction="back"
+              onClick={(): void => moveFormBackNext("back")}
+            >
+              Back
+            </Button>
+            <Button direction="next">Next</Button>
           </Buttons>
         </AllInputs>
       </Form>
       {show && <LeagalData></LeagalData>}
-      
     </Container>
   );
 }
