@@ -15,7 +15,7 @@ const Form = styled.div`
   margin-top: 20px;
   margin-left: 10px;
   margin-bottom: 20px;
-  max-width: 724px;
+  max-width: 650px;
   height: 500px;
   background-color: white;
   border-radius: 20px;
@@ -73,7 +73,7 @@ function Five() {
   return (
     <Container>
       <Form style={{ backgroundColor: "white" }}>
-        <Name>Beneficial owners</Name>
+        <Name>Third parties</Name>
         <AllInputs>
           <Buttons>
             <Button

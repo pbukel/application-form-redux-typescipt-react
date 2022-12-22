@@ -8,6 +8,7 @@ import { setIndex } from "./features/states";
 import Third from "./components/Third";
 import Four from "./components/Four";
 import Five from "./components/Five";
+import Fade from "@mui/material/Fade";
 
 const Container = styled.div`
   background-color: #f5f5f5;
@@ -18,7 +19,7 @@ const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 92px;
+  height: 72px;
   width: 100%;
 `;
 
@@ -81,20 +82,29 @@ const StepperContainer = styled.div`
 
   padding-left: 8px;
 `;
+
 const Step = styled.div`
   display: flex;
   height: 50px;
   align-items: center;
 `;
-const Line = styled.div`
+interface stepProps {
+  step: number;
+  index: number;
+}
+const Line = styled.div<stepProps>`
+  transition: all 0.3s ease;
   width: 2px;
   height: 100%;
-  background-color: #7f7f7f;
+  /* background-color: #7f7f7f; */
+  background-color: ${(props) =>
+    props.step < props.index ? "#2b64f5" : "#7f7f7f"};
   margin-right: 37px;
 `;
-const StepName = styled.div`
+const StepName = styled.div<stepProps>`
+  transition: all 0.3s ease;
   font: normal normal normal 16px/20px Inter;
-  color: #b2b2b2;
+  color: ${(props) => (props.step < props.index ? "#2b64f5" : "#7f7f7f")};
 `;
 const CheckBox = styled.div`
   display: flex;
@@ -102,6 +112,7 @@ const CheckBox = styled.div`
   height: 19px;
   width: 19px;
   margin-left: 8px;
+  transition: all 1.1s ease;
 `;
 
 const FormContainer = styled.div`
@@ -147,45 +158,69 @@ function App() {
             <Percentage>15%</Percentage>
             <StepperContainer>
               <Step>
-                <Line></Line>
-                <StepName>Product and Amount</StepName>
+                <Line step={-1} index={index}></Line>
+                <StepName step={-1} index={index}>
+                  Product and Amount
+                </StepName>
                 <CheckBox>
-                  <CheckCircleOutlineRoundedIcon color="primary" />
+                  <Fade in={true}>
+                    <CheckCircleOutlineRoundedIcon color="primary" />
+                  </Fade>
                 </CheckBox>
               </Step>
               <Step onClick={(): void => moveFormFromStepper(0)}>
-                <Line></Line>
-                <StepName>Company</StepName>
+                <Line step={0} index={index}></Line>
+                <StepName step={0} index={index}>
+                  Company
+                </StepName>
                 <CheckBox>
-                  <CheckCircleOutlineRoundedIcon color="primary" />
+                  <Fade in={0 < index ? true : false}>
+                    <CheckCircleOutlineRoundedIcon color="primary" />
+                  </Fade>
                 </CheckBox>
               </Step>
               <Step onClick={(): void => moveFormFromStepper(1)}>
-                <Line></Line>
-                <StepName>Contact person</StepName>
+                <Line step={1} index={index}></Line>
+                <StepName step={1} index={index}>
+                  Contact person
+                </StepName>
                 <CheckBox>
-                  <CheckCircleOutlineRoundedIcon color="primary" />
+                  <Fade in={1 < index ? true : false}>
+                    <CheckCircleOutlineRoundedIcon color="primary" />
+                  </Fade>
                 </CheckBox>
               </Step>
               <Step>
-                <Line></Line>
-                <StepName>Beneficial owners</StepName>
+                <Line step={2} index={index}></Line>
+                <StepName step={2} index={index}>
+                  Beneficial owners
+                </StepName>
                 <CheckBox>
-                  <CheckCircleOutlineRoundedIcon color="primary" />
+                  <Fade in={2 < index ? true : false}>
+                    <CheckCircleOutlineRoundedIcon color="primary" />
+                  </Fade>
                 </CheckBox>
               </Step>
               <Step>
-                <Line></Line>
-                <StepName>Factoring type</StepName>
+                <Line step={3} index={index}></Line>
+                <StepName step={3} index={index}>
+                  Factoring type
+                </StepName>
                 <CheckBox>
-                  <CheckCircleOutlineRoundedIcon color="primary" />
+                  <Fade in={3 < index ? true : false}>
+                    <CheckCircleOutlineRoundedIcon color="primary" />
+                  </Fade>
                 </CheckBox>
               </Step>
               <Step>
-                <Line></Line>
-                <StepName>Third parties</StepName>
+                <Line step={4} index={index}></Line>
+                <StepName step={4} index={index}>
+                  Third parties
+                </StepName>
                 <CheckBox>
-                  <CheckCircleOutlineRoundedIcon color="primary" />
+                  <Fade in={4 < index ? true : false}>
+                    <CheckCircleOutlineRoundedIcon color="primary" />
+                  </Fade>
                 </CheckBox>
               </Step>
             </StepperContainer>

@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
-import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { setFromButtons, setShowLegal } from "../features/states";
+import { useAppDispatch } from "../app/hooks";
+import { setShowLegal } from "../features/states";
 
 const Container = styled.div`
   position: absolute;
@@ -10,8 +9,8 @@ const Container = styled.div`
   margin-top: 20px;
   margin-left: 10px;
   margin-bottom: 20px;
-  width: 724px;
-  height: 750px;
+  width: 650px;
+  height: 650px;
   background-color: white;
   border-radius: 20px;
   box-shadow: 1px 2px 5px #aaaaaa;
@@ -22,9 +21,9 @@ const Container = styled.div`
   padding-bottom: 20px;
 `;
 const Data = styled.div`
-  margin-top: 80px;
+  margin-top: 50px;
   width: 571px;
-  height: 473px;
+  height: 573px;
   overflow: scroll;
   text-align: left;
   font: normal normal normal 14px/20px Inter;
@@ -63,7 +62,6 @@ const Button = styled.button<buttonProps>`
 `;
 
 function LeagalData() {
-  const show = useAppSelector((state) => state.states.value);
   const dispatch = useAppDispatch();
   function showLegal(show: boolean): void {
     dispatch(setShowLegal(show));
