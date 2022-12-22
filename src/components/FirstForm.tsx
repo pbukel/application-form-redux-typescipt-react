@@ -17,7 +17,7 @@ const Container = styled.div`
 const Form = styled.div`
   margin-top: 20px;
   margin-left: 10px;
-  max-width: 724px;
+  max-width: 650px;
   height: 567px;
   background-color: white;
   border-radius: 20px;

@@ -20,10 +20,11 @@ const Container = styled.div`
 
 const Form = styled.div`
   /* margin: auto 0; */
+  box-sizing: border-box;
   margin-top: 20px;
   margin-left: 10px;
   margin-bottom: 20px;
-  max-width: 724px;
+  max-width: 650px;
   height: 100%;
   background-color: white;
   border-radius: 20px;
@@ -41,7 +42,7 @@ const Name = styled.div`
   padding-left: 40px;
 `;
 const AllInputs = styled.div`
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -55,7 +56,7 @@ const InputContainer = styled.div`
 `;
 const Input = styled.input`
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   box-sizing: border-box;
   border: 1px solid #cccccc;
   border-radius: 8px;
@@ -116,7 +117,7 @@ const CheckboxContainer = styled.div`
 `;
 const Checkbox = styled.input``;
 const Text = styled.div`
-  font-size: 13px;
+  font-size: 11px;
   opacity: 1;
   text-align: left;
   letter-spacing: 0px;
