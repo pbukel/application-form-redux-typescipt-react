@@ -10,10 +10,7 @@ const Container = styled.div`
 `;
 
 const Form = styled.div`
-  /* margin: auto 0; */
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-bottom: 20px;
+  margin: 20px 10px;
   max-width: 650px;
   height: 500px;
   background-color: white;

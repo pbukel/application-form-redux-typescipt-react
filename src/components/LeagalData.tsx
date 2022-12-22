@@ -60,7 +60,7 @@ const Button = styled.button<buttonProps>`
     ${(props) => (props.direction === "back" ? "#3E71F4" : "white")};
   cursor: pointer;
 `;
-
+//function to show or hide legal agreements.
 function LeagalData() {
   const dispatch = useAppDispatch();
   function showLegal(show: boolean): void {

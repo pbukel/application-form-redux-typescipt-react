@@ -14,16 +14,12 @@ const Container = styled.div`
   height: 90vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   position: relative;
 `;
 
 const Form = styled.div`
-  /* margin: auto 0; */
   box-sizing: border-box;
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-bottom: 20px;
+  margin: 20px 10px;
   max-width: 650px;
   height: 100%;
   background-color: white;
