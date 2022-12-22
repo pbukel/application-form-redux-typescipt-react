@@ -15,8 +15,7 @@ const Container = styled.div`
 `;
 
 const Form = styled.div`
-  margin-top: 20px;
-  margin-left: 10px;
+  margin: 20px 10px;
   max-width: 650px;
   height: 567px;
   background-color: white;
@@ -97,6 +96,7 @@ function FirstForm() {
 
   const errors = useAppSelector((state) => state.states.firstFormErrors);
   console.log(errors.length === 0);
+  // function to move form back or forward and checks was inputs filled correctly
   function moveFormBackNext(direction: string): void {
     if (data.companyCode.length < 6) {
       dispatch(setError1("companyCode"));
@@ -110,6 +110,8 @@ function FirstForm() {
     }
     dispatch(setFromButtons(direction));
   }
+
+  //function to habdle Inputs and set to state.
   function handleInput(
     event: React.ChangeEvent<HTMLInputElement>,
     value?: string

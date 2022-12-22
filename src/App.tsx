@@ -14,6 +14,9 @@ const Container = styled.div`
   background-color: #f5f5f5;
   width: 100vw;
   height: 100vh;
+  @media (max-width: 768px) {
+    height: 120vh;
+  }
 `;
 const Header = styled.div`
   display: flex;
@@ -51,20 +54,31 @@ const Right = styled.div`
 `;
 const MainContainer = styled.div`
   display: flex;
-  /* align-items: center; */
   height: calc(100vh - 92px);
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    height: 110vh;
+  }
 `;
 const ProgressContainer = styled.div`
-  flex: 1;
+  flex: 1.5;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    flex: 0;
+    width: 100%;
+  }
 `;
 
 const ProgresBox = styled.div`
-  margin-left: 50px;
   width: 227px;
   height: 350px;
+  @media (max-width: 768px) {
+    width: 90%;
+    height: 100%;
+  }
 `;
 const Percentage = styled.div`
   height: 5%;
@@ -72,6 +86,9 @@ const Percentage = styled.div`
   font: normal normal normal 16px/20px Inter;
   color: #2b64f5;
   margin-bottom: 12px;
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+  }
 `;
 const StepperContainer = styled.div`
   display: flex;
@@ -79,14 +96,22 @@ const StepperContainer = styled.div`
   justify-content: space-around;
   height: 95%;
   width: 100%;
-
   padding-left: 8px;
+  @media (max-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const Step = styled.div`
   display: flex;
-  height: 50px;
+  height: 100px;
   align-items: center;
+  margin-bottom: 4px;
+  @media (max-width: 768px) {
+    flex: 1;
+    width: 100%;
+    height: 50px;
+  }
 `;
 interface stepProps {
   step: number;
@@ -96,15 +121,26 @@ const Line = styled.div<stepProps>`
   transition: all 0.3s ease;
   width: 2px;
   height: 100%;
-  /* background-color: #7f7f7f; */
   background-color: ${(props) =>
     props.step < props.index ? "#2b64f5" : "#7f7f7f"};
   margin-right: 37px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 const StepName = styled.div<stepProps>`
   transition: all 0.3s ease;
   font: normal normal normal 16px/20px Inter;
   color: ${(props) => (props.step < props.index ? "#2b64f5" : "#7f7f7f")};
+  @media (max-width: 768px) {
+    border-bottom: ${(props) =>
+      props.step < props.index ? "2px solid #2b64f5" : "none"};
+    height: 100%;
+    align-items: center;
+    font-size: 11px;
+    width: 100%;
+    text-align: center;
+  }
 `;
 const CheckBox = styled.div`
   display: flex;
@@ -113,15 +149,15 @@ const CheckBox = styled.div`
   width: 19px;
   margin-left: 8px;
   transition: all 1.1s ease;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const FormContainer = styled.div`
   flex: 3;
-  margin-left: 170px;
   height: 100%;
-  /* position: relative; */
   overflow: hidden;
-  /* border: 2px solid red; */
 `;
 
 interface stateProps {
@@ -133,12 +169,11 @@ const Wrapper = styled.div<stateProps>`
   flex-direction: column;
   transition: all 1.1s ease;
   transform: translateY(${(props) => props.index * -100}vh);
-  /* transform: translateY(000vh); */
-  /* border: 10px solid green; */
 `;
 
 function App() {
   const index = useAppSelector((state) => state.states.index);
+  const percent = useAppSelector((state) => state.states.percentage);
   const dispatch = useAppDispatch();
 
   function moveFormFromStepper(i: Number): void {
@@ -155,7 +190,7 @@ function App() {
       <MainContainer>
         <ProgressContainer>
           <ProgresBox>
-            <Percentage>15%</Percentage>
+            <Percentage>{percent}%</Percentage>
             <StepperContainer>
               <Step>
                 <Line step={-1} index={index}></Line>

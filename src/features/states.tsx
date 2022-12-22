@@ -7,6 +7,7 @@ interface MyState {
   user: object;
   firstFormErrors: string[];
   secondFormErrors: string[];
+  percentage: number;
   values: {
     companyCode: string;
     companyName: string;
@@ -36,6 +37,7 @@ const initialState: MyState = {
   },
   firstFormErrors: [],
   secondFormErrors: [],
+  percentage: 15,
 };
 
 export const stateSlice = createSlice({
@@ -46,8 +48,14 @@ export const stateSlice = createSlice({
       state.index = payload;
     },
     setFromButtons: (state, { payload }) => {
-      if (payload === "next") state.index += 1;
-      if (payload === "back") state.index -= 1;
+      if (payload === "next") {
+        state.index += 1;
+        state.percentage += 15;
+      }
+      if (payload === "back") {
+        state.percentage -= 15;
+        state.index -= 1;
+      }
     },
     setShowLegal: (state, { payload }) => {
       state.value = payload;
